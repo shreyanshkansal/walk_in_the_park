@@ -112,7 +112,8 @@ def main(_):
         else:
             action, agent = agent.sample_actions(observation)
         next_observation, reward, done, info = env.step(action)
-
+        print("Rendering a frame...")
+        env.render()
         if not done or 'TimeLimit.truncated' in info:
             mask = 1.0
         else:
