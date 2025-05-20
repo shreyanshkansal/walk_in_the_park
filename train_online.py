@@ -61,10 +61,10 @@ def main(_):
 
     env = wrap_gym(env, rescale_actions=True)
     env = gym.wrappers.RecordEpisodeStatistics(env, deque_size=1)
-    env = gym.wrappers.RecordVideo(
-        env,
-        f'videos/train_{FLAGS.action_filter_high_cut}',
-        episode_trigger=lambda x: True)
+   #env = gym.wrappers.RecordVideo(
+    #    env,
+    #    f'videos/train_{FLAGS.action_filter_high_cut}',
+    #    episode_trigger=lambda x: True)
     env.seed(FLAGS.seed)
 
     if not FLAGS.real_robot:
@@ -74,10 +74,10 @@ def main(_):
             action_filter_high_cut=FLAGS.action_filter_high_cut,
             action_history=FLAGS.action_history)
         eval_env = wrap_gym(eval_env, rescale_actions=True)
-        eval_env = gym.wrappers.RecordVideo(
-            eval_env,
-            f'videos/eval_{FLAGS.action_filter_high_cut}',
-            episode_trigger=lambda x: True)
+       #eval_env = gym.wrappers.RecordVideo(
+        #    eval_env,
+        #   f'videos/eval_{FLAGS.action_filter_high_cut}',
+        #  episode_trigger=lambda x: True)
         eval_env.seed(FLAGS.seed + 42)
 
     kwargs = dict(FLAGS.config)
