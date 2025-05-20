@@ -104,6 +104,8 @@ def main(_):
             replay_buffer = pickle.load(f)
 
     observation, done = env.reset(), False
+    print(f"start_i = {start_i}, max_steps = {FLAGS.max_steps}")
+
     for i in tqdm.tqdm(range(start_i, FLAGS.max_steps),
                        smoothing=0.1,
                        disable=not FLAGS.tqdm):
@@ -112,8 +114,8 @@ def main(_):
         else:
             action, agent = agent.sample_actions(observation)
         next_observation, reward, done, info = env.step(action)
-        print("Rendering a frame...")
-        env.render()
+        print("blah blah blah")
+        #env.render()
         if not done or 'TimeLimit.truncated' in info:
             mask = 1.0
         else:
