@@ -5,8 +5,11 @@ import tensorflow_probability
 
 from rl.distributions.tanh_transformed import TanhTransformedDistribution
 
-tfp = tensorflow_probability.substrates.jax
-tfd = tfp.distributions
+#tfp = tensorflow_probability.substrates.jax
+#tfd = tfp.distributions
+import tensorflow_probability.substrates.jax as tfp
+from tensorflow_probability.substrates.jax import distributions as tfd
+
 
 import flax.linen as nn
 import jax.numpy as jnp

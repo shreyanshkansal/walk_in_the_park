@@ -2,9 +2,14 @@ from typing import Any, Optional
 
 import tensorflow_probability
 
-tfp = tensorflow_probability.substrates.jax
-tfd = tfp.distributions
-tfb = tfp.bijectors
+#tfp = tensorflow_probability.substrates.jax
+import tensorflow_probability.substrates.jax as tfp
+
+#tfd = tfp.distributions
+from tensorflow_probability.substrates.jax import distributions as tfd
+
+#tfb = tfp.bijectors
+from tensorflow_probability.substrates.jax import bijectors as tfb
 
 import jax
 import jax.numpy as jnp
