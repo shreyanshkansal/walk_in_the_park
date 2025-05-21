@@ -90,7 +90,7 @@ def main(_):
     buffer_dir = 'saved/buffers'
 
     last_checkpoint = checkpoints.latest_checkpoint(chkpt_dir)
-
+    '''
     if last_checkpoint is None:
         start_i = 0
         replay_buffer = ReplayBuffer(env.observation_space, env.action_space,
@@ -103,9 +103,55 @@ def main(_):
 
         with open(os.path.join(buffer_dir, f'buffer_{start_i}'), 'rb') as f:
             replay_buffer = pickle.load(f)
+    '''
+    if last_checkpoint is not None:
+        start_i = int(last_checkpoint.split('_')[-1])
+        buffer_path = os.path.join(buffer_dir, f'buffer_{start_i}')
+    else:
+        buffer_path = None
 
-    observation, done = env.reset(), False
-    print(f"start_i = {start_i}, max_steps = {FLAGS.max_steps}")
+    should_start_fresh = False
+
+    
+    if last_checkpoint is None or not os.path.exists(buffer_path):
+        should_start_fresh = True
+    else:
+        # Try loading the buffer
+        try:
+            with open(buffer_path, 'rb') as f:
+                replay_buffer = pickle.load(f)
+        except Exception as e:
+            print(f"Failed to load replay buffer from {buffer_path}: {e}")
+            should_start_fresh = True
+
+    # Final decision
+    if should_start_fresh:
+        print("Starting fresh — deleting old checkpoints and buffers...")
+
+        # Delete checkpoint directory
+        if os.path.exists(chkpt_dir):
+            shutil.rmtree(chkpt_dir)
+            print(f"Deleted checkpoint directory: {chkpt_dir}")
+
+        # Delete buffer directory
+        if os.path.exists(buffer_dir):
+            shutil.rmtree(buffer_dir)
+            print(f"Deleted buffer directory: {buffer_dir}")
+
+        os.makedirs(chkpt_dir, exist_ok=True)
+        os.makedirs(buffer_dir, exist_ok=True)
+
+        start_i = 0
+        replay_buffer = ReplayBuffer(env.observation_space, env.action_space,
+                                 FLAGS.max_steps)
+        replay_buffer.seed(FLAGS.seed)
+        observation, done = env.reset(), False
+
+    else:
+        print(f"Resuming from checkpoint {last_checkpoint} and buffer {buffer_path}")
+        agent = checkpoints.restore_checkpoint(last_checkpoint, agent)
+        observation, done = env.reset(), False
+        #print(f"start_i = {start_i}, max_steps = {FLAGS.max_steps}")
 
     for i in tqdm.tqdm(range(start_i, FLAGS.max_steps),
                        smoothing=0.1,
