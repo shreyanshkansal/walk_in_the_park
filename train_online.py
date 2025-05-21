@@ -6,6 +6,8 @@ import shutil
 import numpy as np
 import tqdm
 
+import cv2
+
 import gym
 import wandb
 from absl import app, flags
@@ -162,7 +164,9 @@ def main(_):
             action, agent = agent.sample_actions(observation)
         next_observation, reward, done, info = env.step(action)
         print("blah blah blah")
-        #env.render()
+        frame = env.render(mode="rgb_array")  # replaces env.render()
+        cv2.imshow("Simulation", frame)
+        cv2.waitKey(1)
         if not done or 'TimeLimit.truncated' in info:
             mask = 1.0
         else:
