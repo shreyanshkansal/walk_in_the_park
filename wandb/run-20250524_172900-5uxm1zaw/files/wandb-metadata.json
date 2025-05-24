@@ -1,0 +1,38 @@
+{
+  "os": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "python": "CPython 3.9.18",
+  "startedAt": "2025-05-24T09:29:00.422501Z",
+  "args": [
+    "--env_name=A1Run-v0",
+    "--utd_ratio=20",
+    "--start_training=100",
+    "--max_steps=200",
+    "--config=configs/droq_config.py"
+  ],
+  "program": "/home/shreyansh/MARmot_Lab/walk_in_the_park/train_online.py",
+  "codePath": "train_online.py",
+  "git": {
+    "remote": "https://github.com/shreyanshkansal/walk_in_the_park.git",
+    "commit": "600adfbf2bd1ce8646c91aa8aa538149d0404ff9"
+  },
+  "email": "shreyanshkansal@kgpian.iitkgp.ac.in",
+  "root": "/home/shreyansh/MARmot_Lab/walk_in_the_park",
+  "host": "millenium-falcon",
+  "executable": "/home/shreyansh/anaconda3/envs/walk-env/bin/python",
+  "codePathLocal": "train_online.py",
+  "cpu_count": 10,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "125443874816",
+      "used": "70121443328"
+    }
+  },
+  "memory": {
+    "total": "16476815360"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 12
+  }
+}
