@@ -13,5 +13,5 @@ dmcgym @ git+https://github.com/ikostrikov/dmcgym
 pybullet
 attrs
 filterpy
-tf-keras=2.19.0=pypi_0
-numpy=1.26.4=py39heeff2f4_0
+tf-keras==2.19.0
+numpy==1.26.4
