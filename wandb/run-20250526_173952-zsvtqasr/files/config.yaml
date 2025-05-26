@@ -1,0 +1,136 @@
+'?':
+    value: false
+_wandb:
+    value:
+        cli_version: 0.19.11
+        m: []
+        python_version: 3.9.18
+        t:
+            "1":
+                - 2
+                - 3
+                - 12
+                - 45
+                - 55
+            "2":
+                - 2
+                - 3
+                - 12
+                - 45
+                - 55
+            "3":
+                - 23
+                - 55
+            "4": 3.9.18
+            "5": 0.19.11
+            "8":
+                - 5
+            "12": 0.19.11
+            "13": linux-x86_64
+action_filter_high_cut:
+    value: null
+action_history:
+    value: 1
+alsologtostderr:
+    value: false
+chex_assert_multiple_cpu_devices:
+    value: false
+chex_n_cpu_devices:
+    value: 1
+chex_skip_pmap_variant_if_single_device:
+    value: true
+chkpt_dir:
+    value: saved/checkpoints
+config:
+    value: |
+        actor_lr: 0.0003
+        critic_dropout_rate: 0.01
+        critic_layer_norm: true
+        critic_lr: 0.0003
+        discount: 0.99
+        hidden_dims: !!python/tuple
+        - 256
+        - 256
+        init_temperature: 0.1
+        num_qs: 2
+        target_entropy: null
+        tau: 0.005
+        temp_lr: 0.0003
+control_frequency:
+    value: 20
+delta_threshold:
+    value: 0.5
+env_name:
+    value: A1Run-v0
+eval_episodes:
+    value: 1
+experimental_orbax_use_distributed_process_id:
+    value: false
+hbm_oom_exit:
+    value: true
+help:
+    value: false
+helpfull:
+    value: false
+helpshort:
+    value: false
+helpxml:
+    value: false
+log_dir:
+    value: ""
+logtostderr:
+    value: false
+only_check_args:
+    value: false
+op_conversion_fallback_to_while_loop:
+    value: true
+pdb:
+    value: false
+pdb_post_mortem:
+    value: false
+profile_file:
+    value: null
+pymjcf_debug:
+    value: false
+pymjcf_debug_full_dump_dir:
+    value: ""
+pymjcf_log_xml:
+    value: false
+real_robot:
+    value: false
+run_with_pdb:
+    value: false
+run_with_profiling:
+    value: false
+runtime_oom_exit:
+    value: true
+seed:
+    value: 42
+showprefixforinfo:
+    value: true
+stderrthreshold:
+    value: fatal
+test_random_seed:
+    value: 301
+test_randomize_ordering_seed:
+    value: ""
+test_srcdir:
+    value: ""
+test_tmpdir:
+    value: /tmp/absl_testing
+timeout:
+    value: true
+tt_check_filter:
+    value: false
+tt_single_core_summaries:
+    value: false
+use_cprofile_for_profiling:
+    value: true
+v:
+    value: 0
+verbosity:
+    value: 0
+wandb:
+    value: true
+xml_output_file:
+    value: ""

@@ -1,0 +1,36 @@
+{
+  "os": "Linux-5.15.0-139-generic-x86_64-with-glibc2.31",
+  "python": "CPython 3.9.18",
+  "startedAt": "2025-05-26T09:39:52.392321Z",
+  "args": [
+    "--env_name=A1Run-v0",
+    "--eval_episodes=1",
+    "--config=configs/droq_config.py"
+  ],
+  "program": "/home/shreyansh/MARmot_Lab/walk_in_the_park/run_latest_checkpoint.py",
+  "codePath": "run_latest_checkpoint.py",
+  "git": {
+    "remote": "https://github.com/shreyanshkansal/walk_in_the_park.git",
+    "commit": "6c02c8bcaaafb8196c3b0730c1e60fd4dde0230b"
+  },
+  "email": "shreyanshkansal@kgpian.iitkgp.ac.in",
+  "root": "/home/shreyansh/MARmot_Lab/walk_in_the_park",
+  "host": "millenium-falcon",
+  "executable": "/home/shreyansh/anaconda3/envs/walk-env/bin/python",
+  "codePathLocal": "run_latest_checkpoint.py",
+  "cpu_count": 10,
+  "cpu_count_logical": 12,
+  "disk": {
+    "/": {
+      "total": "125443874816",
+      "used": "70241538048"
+    }
+  },
+  "memory": {
+    "total": "16476811264"
+  },
+  "cpu": {
+    "count": 10,
+    "countLogical": 12
+  }
+}

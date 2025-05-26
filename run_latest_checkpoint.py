@@ -15,13 +15,13 @@ from env_utils import make_mujoco_env
 FLAGS = flags.FLAGS
 
 flags.DEFINE_string('env_name', 'A1Run-v0', 'Environment name.')
-flags.DEFINE_integer('eval_episodes', 5, 'Episodes to evaluate.')
+flags.DEFINE_integer('eval_episodes', 1, 'Episodes to evaluate.')
 flags.DEFINE_integer('control_frequency', 20, 'Control frequency.')
 flags.DEFINE_integer('seed', 42, 'Random seed.')
 flags.DEFINE_float('action_filter_high_cut', None, 'Action filter high cut.')
 flags.DEFINE_integer('action_history', 1, 'Action history.')
 flags.DEFINE_boolean('real_robot', False, 'Use real robot.')
-flags.DEFINE_string('chkpt_dir', 'saved/checkpoints', 'Checkpoint directory.')
+#flags.DEFINE_string('chkpt_dir', 'saved/checkpoints', 'Checkpoint directory.')
 flags.DEFINE_boolean('wandb', True, 'Log to Weights and Biases.')
 
 config_flags.DEFINE_config_file(
@@ -60,11 +60,11 @@ def main(_):
 
     kwargs = dict(FLAGS.config)
     agent = SACLearner.create(FLAGS.seed, env.observation_space, env.action_space, **kwargs)
-
-    latest_chkpt = checkpoints.latest_checkpoint(FLAGS.chkpt_dir)
+    chkpt_dir = os.path.abspath('saved/checkpoints')
+    latest_chkpt = checkpoints.latest_checkpoint(chkpt_dir)
     if latest_chkpt is None:
         raise ValueError(f"No checkpoint found in {FLAGS.chkpt_dir}")
-    print(f"✅ Restoring agent from {latest_chkpt}")
+    print(f"Restoring agent from {latest_chkpt}")
     agent = checkpoints.restore_checkpoint(latest_chkpt, agent)
 
     eval_info = evaluate(agent, eval_env, num_episodes=FLAGS.eval_episodes)
