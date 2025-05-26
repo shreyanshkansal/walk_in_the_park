@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 import os
-import numpy as np
 import gym
+import numpy as np
 import wandb
 from absl import app, flags
 from flax.training import checkpoints
@@ -36,11 +36,10 @@ def main(_):
         wandb.init(project='a1-eval')
         wandb.config.update(FLAGS)
 
-    # --- Env + Eval Env ---
     if FLAGS.real_robot:
         from real.envs.a1_env import A1Real
         env = A1Real(zero_action=np.asarray([0.05, 0.9, -1.8] * 4))
-        eval_env = env  # no separate eval_env for real robot
+        eval_env = env
     else:
         env = make_mujoco_env(
             FLAGS.env_name,
@@ -56,13 +55,9 @@ def main(_):
     env = wrap_gym(env, rescale_actions=True)
     eval_env = wrap_gym(eval_env, rescale_actions=True)
 
-    env = gym.wrappers.RecordEpisodeStatistics(env, deque_size=1)
-    eval_env = gym.wrappers.RecordEpisodeStatistics(eval_env, deque_size=1)
-
     env.seed(FLAGS.seed)
     eval_env.seed(FLAGS.seed + 42)
 
-    # --- Agent ---
     kwargs = dict(FLAGS.config)
     agent = SACLearner.create(FLAGS.seed, env.observation_space, env.action_space, **kwargs)
 
@@ -72,10 +67,8 @@ def main(_):
     print(f"✅ Restoring agent from {latest_chkpt}")
     agent = checkpoints.restore_checkpoint(latest_chkpt, agent)
 
-    # --- Evaluate ---
     eval_info = evaluate(agent, eval_env, num_episodes=FLAGS.eval_episodes)
 
-    # --- Log ---
     for k, v in eval_info.items():
         print(f"Eval {k}: {v}")
         if FLAGS.wandb:
