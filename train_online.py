@@ -163,7 +163,7 @@ def main(_):
         else:
             action, agent = agent.sample_actions(observation)
         next_observation, reward, done, info = env.step(action)
-        print("blah blah blah")
+        #print("blah blah blah")
         frame = env.render(mode="rgb_array")  # replaces env.render()
         cv2.imshow("Simulation", frame)
         cv2.waitKey(1)
