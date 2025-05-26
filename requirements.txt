@@ -3,7 +3,7 @@ jax[cuda]
 --find-links https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 flax
 tqdm
-gym
+gym==0.23.1
 tensorflow
 tensorflow_probability
 ml_collections
@@ -15,3 +15,4 @@ attrs
 filterpy
 tf-keras==2.19.0
 numpy==1.26.4
+opencv-python

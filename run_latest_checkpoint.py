@@ -3,6 +3,7 @@ import os
 import gym
 import numpy as np
 import wandb
+
 from absl import app, flags
 from flax.training import checkpoints
 from ml_collections import config_flags
@@ -15,7 +16,7 @@ from env_utils import make_mujoco_env
 FLAGS = flags.FLAGS
 
 flags.DEFINE_string('env_name', 'A1Run-v0', 'Environment name.')
-flags.DEFINE_integer('eval_episodes', 1, 'Episodes to evaluate.')
+flags.DEFINE_integer('eval_episodes', 20, 'Episodes to evaluate.')
 flags.DEFINE_integer('control_frequency', 20, 'Control frequency.')
 flags.DEFINE_integer('seed', 42, 'Random seed.')
 flags.DEFINE_float('action_filter_high_cut', None, 'Action filter high cut.')
@@ -68,7 +69,7 @@ def main(_):
     agent = checkpoints.restore_checkpoint(latest_chkpt, agent)
 
     eval_info = evaluate(agent, eval_env, num_episodes=FLAGS.eval_episodes)
-
+ 
     for k, v in eval_info.items():
         print(f"Eval {k}: {v}")
         if FLAGS.wandb:
